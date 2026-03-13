@@ -13,11 +13,12 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:         #f5f7f7;
-      --bg-warm:    #f5f7f7;
+      --bg:         #ecf0f0;
+      --bg-warm:    #ecf0f0;
+      --bg-deep:    #e0e6e6;
       --surface:    #ffffff;
-      --border:     #e3e7e7;
-      --border2:    #ced4d4;
+      --border:     #dde3e3;
+      --border2:    #c9d0d0;
       --teal:       #0d9488;
       --teal-light: #e6f5f3;
       --teal-mid:   #ccede9;
@@ -61,6 +62,7 @@
 
     .section      { padding: 124px 0; }
     .section-alt  { padding: 124px 0; background: var(--surface); }
+    .section-deep { padding: 124px 0; background: var(--bg-deep); }
     .section-warm { padding: 124px 0; background: var(--bg-warm); }
 
     /* ── Fade-in ───────────────────────────────────────────────── */
@@ -96,7 +98,7 @@
     nav.hero-mode .nav-cta:hover { background: var(--teal) !important; }
 
     nav.scrolled {
-      background: rgba(245,247,247,0.94) !important;
+      background: rgba(236,240,240,0.94) !important;
       backdrop-filter: blur(16px);
       box-shadow: 0 1px 0 var(--border);
     }
@@ -164,11 +166,11 @@
       inset: 0;
       background: linear-gradient(
         105deg,
-        rgba(245,247,247,0.98) 0%,
-        rgba(245,247,247,0.96) 38%,
-        rgba(245,247,247,0.72) 55%,
-        rgba(245,247,247,0.25) 72%,
-        rgba(245,247,247,0.05) 87%,
+        rgba(236,240,240,0.98) 0%,
+        rgba(236,240,240,0.96) 38%,
+        rgba(236,240,240,0.72) 55%,
+        rgba(236,240,240,0.25) 72%,
+        rgba(236,240,240,0.05) 87%,
         transparent 100%
       );
       pointer-events: none;
@@ -407,7 +409,6 @@
     }
 
     /* ── TEAM ──────────────────────────────────────────────────── */
-    #team { background: var(--surface); }
 
     .team-grid {
       display: grid;
@@ -813,7 +814,7 @@
       .contact-grid { grid-template-columns: 1fr; gap: 48px; }
       nav { padding: 18px 24px; }
       .container { padding: 0 24px; }
-      .section, .section-alt, .section-warm { padding: 72px 0; }
+      .section, .section-alt, .section-deep, .section-warm { padding: 72px 0; }
       .nav-links a:not(.nav-cta) { display: none; }
       footer { flex-direction: column; gap: 10px; text-align: center; }
 
@@ -830,10 +831,10 @@
       #hero::before {
         background: linear-gradient(
           to bottom,
-          rgba(245,247,247,0.97) 0%,
-          rgba(245,247,247,0.94) 45%,
-          rgba(245,247,247,0.82) 70%,
-          rgba(245,247,247,0.55) 100%
+          rgba(236,240,240,0.97) 0%,
+          rgba(236,240,240,0.94) 45%,
+          rgba(236,240,240,0.82) 70%,
+          rgba(236,240,240,0.55) 100%
         );
       }
 
@@ -861,10 +862,10 @@
       #hero::before {
         background: linear-gradient(
           to bottom,
-          rgba(245,247,247,0.99) 0%,
-          rgba(245,247,247,0.97) 55%,
-          rgba(245,247,247,0.85) 75%,
-          rgba(245,247,247,0.60) 100%
+          rgba(236,240,240,0.99) 0%,
+          rgba(236,240,240,0.97) 55%,
+          rgba(236,240,240,0.85) 75%,
+          rgba(236,240,240,0.60) 100%
         );
       }
 
@@ -921,7 +922,7 @@
   </section>
 
   <!-- WHO WE ARE -->
-  <section id="who" class="section-alt">
+  <section id="who" class="section">
     <div class="container">
       <div class="section-header">
         <div class="section-header-left fade-in">
@@ -951,7 +952,7 @@
   </section>
 
   <!-- WHAT WE DO -->
-  <section id="what" class="section">
+  <section id="what" class="section-alt">
     <div class="container">
       <div class="section-header">
         <div class="section-header-left fade-in">
@@ -984,7 +985,7 @@
   </section>
 
   <!-- TEAM -->
-  <section id="team" class="section-alt" style="padding-top:0;">
+  <section id="team" class="section" style="padding-top:0;">
     <div class="container">
       <div class="section-header" style="padding-top:72px; border-top: 1px solid var(--border);">
         <div class="section-header-left fade-in">
@@ -1038,7 +1039,7 @@
   </section>
 
   <!-- SPECIALISMS -->
-  <section id="specialisms" class="section">
+  <section id="specialisms" class="section-deep">
     <div class="container">
       <div class="section-header">
         <div class="section-header-left fade-in">
