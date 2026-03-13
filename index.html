@@ -810,21 +810,61 @@
       .section, .section-alt, .section-warm { padding: 72px 0; }
       .nav-links a:not(.nav-cta) { display: none; }
       footer { flex-direction: column; gap: 10px; text-align: center; }
+
+      /* Hero: restore container left padding (overridden by desktop rule) */
+      #hero .container { padding-left: 24px; }
+
+      /* Reposition background image for portrait/tablet viewports */
+      #hero {
+        background-position: 72% 15%;
+        padding: 120px 0 80px;
+      }
+
+      /* Stronger top-down overlay so text is always legible */
       #hero::before {
         background: linear-gradient(
           to bottom,
-          rgba(247,246,243,0.96) 0%,
-          rgba(247,246,243,0.90) 60%,
-          rgba(247,246,243,0.75) 100%
+          rgba(247,246,243,0.97) 0%,
+          rgba(247,246,243,0.94) 45%,
+          rgba(247,246,243,0.82) 70%,
+          rgba(247,246,243,0.55) 100%
         );
       }
+
+      /* Align scroll indicator with new container padding */
+      .hero-scroll { left: 24px; }
+
+      /* Allow hero-inner to use full available width */
+      .hero-inner { max-width: 100%; }
+
+      /* Stack CTA buttons vertically on smaller viewports */
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 20px; }
     }
 
     @media (max-width: 560px) {
       .team-grid { grid-template-columns: 1fr; max-width: 320px; margin: 0 auto; }
       .tombstone-grid { grid-template-columns: 1fr; }
       .cs-card { padding: 28px 20px; }
-      .hero-headline { font-size: 38px; }
+
+      #hero {
+        background-position: center 15%;
+        min-height: 100svh;
+      }
+
+      /* On small phones, push the image below text by fading fully at bottom half */
+      #hero::before {
+        background: linear-gradient(
+          to bottom,
+          rgba(247,246,243,0.99) 0%,
+          rgba(247,246,243,0.97) 55%,
+          rgba(247,246,243,0.85) 75%,
+          rgba(247,246,243,0.60) 100%
+        );
+      }
+
+      .hero-headline { font-size: 36px; }
+      .hero-sub { font-size: 15px; }
+      .hero-scroll { display: none; }
     }
 
   </style>
