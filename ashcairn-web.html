@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ashcairn — Technology Risk &amp; Resilience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,900;1,300&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ── Reset ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #f7f6f3;
+      --bg-warm:    #f0ede8;
+      --surface:    #ffffff;
+      --border:     #e8e4de;
+      --border2:    #d5d0c8;
+      --teal:       #0d9488;
+      --teal-light: #e6f5f3;
+      --teal-mid:   #ccede9;
+      --ink:        #1a1a1a;
+      --ink-mid:    #3d3d3d;
+      --ink-soft:   #6b6b6b;
+      --ink-faint:  #9a9a9a;
+      --font-head:  'Sora', 'Inter', sans-serif;
+      --font-body:  'Inter', sans-serif;
+      --font-mono:  'Sora', 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink-mid);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: var(--teal); color: white; }
+
+    .label {
+      font-family: var(--font-head);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .section      { padding: 124px 0; }
+    .section-alt  { padding: 124px 0; background: var(--surface); }
+    .section-warm { padding: 124px 0; background: var(--bg-warm); }
+
+    /* ── Fade-in ───────────────────────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── NAV ───────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 48px;
+      transition: background 0.35s, box-shadow 0.35s;
+    }
+
+    nav.hero-mode { background: transparent; }
+
+    nav.hero-mode .nav-logo { color: var(--teal); }
+    nav.hero-mode .nav-links a:not(.nav-cta) { color: var(--ink-soft); }
+    nav.hero-mode .nav-links a:not(.nav-cta):hover { color: var(--teal); }
+    nav.hero-mode .nav-cta {
+      background: var(--ink) !important;
+      color: white !important;
+      border: none;
+    }
+    nav.hero-mode .nav-cta:hover { background: var(--teal) !important; }
+
+    nav.scrolled {
+      background: rgba(247,246,243,0.94) !important;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    nav.scrolled .nav-logo { color: var(--teal) !important; }
+    nav.scrolled .nav-links a:not(.nav-cta) { color: var(--ink-soft) !important; }
+    nav.scrolled .nav-cta {
+      background: var(--ink) !important;
+      color: white !important;
+      border: none !important;
+    }
+
+    .nav-logo {
+      font-family: 'Inter', sans-serif;
+      font-size: 21px;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      text-transform: none;
+      color: var(--teal);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-links { display: flex; align-items: center; gap: 36px; }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--ink-soft);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--teal); }
+
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--surface) !important;
+      background: var(--ink);
+      padding: 9px 22px;
+      letter-spacing: 0.03em;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--teal) !important; color: white !important; }
+
+    /* ── HERO ──────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 140px 0 100px;
+      position: relative;
+      overflow: hidden;
+      background-image: url('ashcairn-hero-dave.jpg');
+      background-size: cover;
+      background-position: 68% 28%;
+      background-repeat: no-repeat;
+    }
+
+    /* Left-to-right gradient overlay */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(247,246,243,0.98) 0%,
+        rgba(247,246,243,0.96) 38%,
+        rgba(247,246,243,0.72) 55%,
+        rgba(247,246,243,0.25) 72%,
+        rgba(247,246,243,0.05) 87%,
+        transparent 100%
+      );
+      pointer-events: none;
+    }
+
+    /* Bottom fade into next section */
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 140px;
+      background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* Scroll indicator */
+    .hero-scroll {
+      position: absolute;
+      bottom: 52px;
+      left: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      z-index: 2;
+    }
+
+    .hero-scroll-label {
+      font-family: var(--font-head);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      writing-mode: vertical-rl;
+    }
+
+    .hero-scroll-line {
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(to bottom, var(--teal), transparent);
+      animation: scrollPulse 2.2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.35; transform: scaleY(0.9); }
+      55%       { opacity: 1;    transform: scaleY(1);   }
+    }
+
+    #hero .container { padding-left: 0; }
+
+    .hero-inner {
+      max-width: 490px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+
+    .hero-label::after {
+      content: '';
+      width: 40px; height: 1px;
+      background: var(--teal);
+      opacity: 0.4;
+    }
+
+    .hero-headline {
+      font-family: var(--font-head);
+      font-size: clamp(40px, 5vw, 64px);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+
+    .hero-headline strong { font-weight: 600; color: var(--teal); }
+
+    .hero-sub {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 1.8;
+      max-width: 460px;
+      margin-bottom: 44px;
+    }
+
+    .hero-actions { display: flex; align-items: center; gap: 32px; }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      color: white;
+      background: var(--ink);
+      text-decoration: none;
+      padding: 14px 28px;
+      letter-spacing: 0.03em;
+      transition: background 0.2s, gap 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--teal); gap: 16px; }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--ink-soft);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      border-bottom: 1px solid var(--border2);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .btn-ghost:hover { color: var(--teal); border-color: var(--teal); }
+
+    /* ── SECTION HEADERS ───────────────────────────────────────── */
+    .section-header {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 56px;
+      align-items: start;
+      margin-bottom: 72px;
+    }
+
+    .section-header-left { padding-top: 4px; }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+    }
+
+    .section-body {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 1.8;
+      max-width: 580px;
+      margin-top: 14px;
+    }
+
+    /* ── WHO WE ARE ────────────────────────────────────────────── */
+    .who-quote {
+      margin-top: 48px;
+      padding: 40px 52px;
+      background: var(--bg);
+      border-left: 3px solid var(--teal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .who-quote::before {
+      content: '\201C';
+      font-family: var(--font-head);
+      font-size: 140px;
+      font-weight: 600;
+      color: var(--teal);
+      opacity: 0.07;
+      position: absolute;
+      top: -18px;
+      left: 36px;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .who-quote p {
+      font-family: var(--font-head);
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.65;
+      letter-spacing: -0.022em;
+      position: relative;
+    }
+
+    /* ── SERVICES ──────────────────────────────────────────────── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--surface);
+      padding: 40px 32px;
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--border);
+      transition: border-color 0.25s, border-top-color 0.25s, box-shadow 0.3s, transform 0.3s;
+    }
+
+    .service-card:hover {
+      border-color: var(--border);
+      border-top-color: var(--teal);
+      box-shadow: 0 12px 40px rgba(13,148,136,0.09);
+      transform: translateY(-3px);
+    }
+
+    .service-title {
+      font-family: var(--font-head);
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .service-subtitle {
+      font-family: var(--font-head);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--teal);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .service-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 1.8;
+    }
+
+    /* ── TEAM ──────────────────────────────────────────────────── */
+    #team { background: var(--surface); }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+
+    .team-card { display: flex; flex-direction: column; }
+
+    .team-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--bg-warm);
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(0%) brightness(0.97);
+      transition: filter 0.4s, transform 0.5s;
+    }
+
+    .team-card:hover .team-photo img { filter: grayscale(0%) brightness(1.02); transform: scale(1.03); }
+
+    .team-photo-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 28px;
+      flex-direction: column;
+      background: linear-gradient(160deg, var(--bg-warm) 0%, var(--teal-mid) 100%);
+    }
+
+    .team-photo-placeholder .initials {
+      font-family: var(--font-head);
+      font-size: 36px;
+      font-weight: 300;
+      color: var(--teal);
+      opacity: 0.6;
+    }
+
+    .team-photo-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60%;
+      background: linear-gradient(to top, rgba(26,26,26,0.08), transparent);
+    }
+
+    .team-name {
+      font-family: var(--font-head);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 4px;
+      letter-spacing: -0.02em;
+    }
+
+    .team-role {
+      font-family: var(--font-head);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+
+    /* ── SPECIALISMS ───────────────────────────────────────────── */
+    .spec-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .spec-item {
+      background: var(--surface);
+      padding: 44px 36px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--teal);
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+
+    .spec-item:hover {
+      box-shadow: 0 12px 40px rgba(13,148,136,0.09);
+      transform: translateY(-3px);
+    }
+
+    .spec-title {
+      font-family: var(--font-head);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.022em;
+      margin-bottom: 12px;
+    }
+
+    .spec-lead {
+      font-family: var(--font-head);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 18px;
+    }
+
+    .spec-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 1.85;
+    }
+
+    /* ── SELECTED WORK ─────────────────────────────────────────── */
+    .tombstone-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: 14px;
+    }
+
+    .tombstone {
+      background: var(--surface);
+      padding: 28px 24px;
+      border-bottom: 2px solid transparent;
+      transition: background 0.2s, border-color 0.25s;
+    }
+
+    .tombstone:hover {
+      background: var(--teal-light);
+      border-bottom-color: var(--teal-mid);
+    }
+
+    .tombstone-sector {
+      font-family: var(--font-head);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+
+    .tombstone-engagement {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .tombstone-client {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--ink-faint);
+    }
+
+    .work-note {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.07em;
+      color: var(--ink-faint);
+      text-align: right;
+      margin-bottom: 64px;
+    }
+
+    /* Case study */
+    .cs-label { margin-bottom: 28px; }
+
+    .cs-title {
+      font-family: var(--font-head);
+      font-size: clamp(18px, 2vw, 24px);
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.45;
+      letter-spacing: -0.02em;
+      margin-bottom: 40px;
+      max-width: 680px;
+    }
+
+    .cs-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--teal);
+      padding: 48px;
+    }
+
+    .cs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px 56px;
+    }
+
+    .cs-block-label {
+      font-family: var(--font-head);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+
+    .cs-block p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.85;
+    }
+
+    .cs-deliverables { display: flex; flex-direction: column; gap: 8px; }
+
+    .cs-d-item {
+      display: flex;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.6;
+      align-items: baseline;
+    }
+
+    .cs-d-item::before {
+      content: '→';
+      color: var(--teal);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+
+    .cs-outcomes {
+      grid-column: 1 / -1;
+      background: var(--bg);
+      padding: 32px 36px;
+      border: 1px solid var(--border);
+    }
+
+    .cs-outcomes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .cs-outcome {
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.7;
+    }
+
+    .cs-outcome::before {
+      content: '✓';
+      color: var(--teal);
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    /* ── CONTACT ───────────────────────────────────────────────── */
+    #contact {
+      background: var(--ink);
+      background-image: radial-gradient(ellipse at 95% 10%, rgba(13,148,136,0.10) 0%, transparent 55%);
+    }
+
+    #contact .label { color: rgba(13,148,136,0.9); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-headline {
+      font-family: var(--font-head);
+      font-size: clamp(30px, 3.8vw, 48px);
+      font-weight: 300;
+      color: white;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-top: 20px;
+      margin-bottom: 32px;
+    }
+
+    .contact-headline strong { font-weight: 600; color: var(--teal); }
+
+    .contact-links { display: flex; flex-direction: column; gap: 14px; }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+
+    .contact-link:hover { color: var(--teal); }
+
+    .contact-link .dot {
+      width: 5px; height: 5px;
+      background: var(--teal);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .contact-right-label {
+      font-family: var(--font-head);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 32px;
+    }
+
+    .contact-statement {
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.8;
+      border-left: 2px solid rgba(13,148,136,0.3);
+      padding-left: 22px;
+      margin-bottom: 36px;
+    }
+
+    .btn-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      background: white;
+      text-decoration: none;
+      padding: 14px 28px;
+      letter-spacing: 0.03em;
+      transition: background 0.2s, color 0.2s, gap 0.2s;
+    }
+
+    .btn-contact:hover { background: var(--teal); color: white; gap: 16px; }
+
+    /* ── FOOTER ────────────────────────────────────────────────── */
+    footer {
+      background: #0f0f0f;
+      border-top: 1px solid rgba(13,148,136,0.18);
+      padding: 28px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .footer-right {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Responsive ────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .team-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+    }
+
+    @media (max-width: 860px) {
+      .section-header { grid-template-columns: 1fr; gap: 24px; }
+      .services-grid { grid-template-columns: 1fr; gap: 16px; }
+      .spec-list { grid-template-columns: 1fr; }
+      .tombstone-grid { grid-template-columns: repeat(2, 1fr); }
+      .cs-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+      nav { padding: 18px 24px; }
+      .container { padding: 0 24px; }
+      .section, .section-alt, .section-warm { padding: 72px 0; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      footer { flex-direction: column; gap: 10px; text-align: center; }
+      #hero::before {
+        background: linear-gradient(
+          to bottom,
+          rgba(247,246,243,0.96) 0%,
+          rgba(247,246,243,0.90) 60%,
+          rgba(247,246,243,0.75) 100%
+        );
+      }
+    }
+
+    @media (max-width: 560px) {
+      .team-grid { grid-template-columns: 1fr; max-width: 320px; margin: 0 auto; }
+      .tombstone-grid { grid-template-columns: 1fr; }
+      .cs-card { padding: 28px 20px; }
+      .hero-headline { font-size: 38px; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav" class="hero-mode">
+    <a href="#hero" class="nav-logo">ashcairn</a>
+    <div class="nav-links">
+      <a href="#who">About</a>
+      <a href="#what">Services</a>
+      <a href="#team">Team</a>
+      <a href="#work">Work</a>
+      <a href="#contact" class="nav-cta">Work with us</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-scroll" aria-hidden="true">
+      <span class="hero-scroll-label">Scroll</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-label fade-in">
+          <span class="label">Technology Risk · Resilience · Advisory</span>
+        </div>
+        <h1 class="hero-headline fade-in">
+          Find the risk.<br>
+          Understand the cost.<br>
+          <strong>Fix what matters.</strong>
+        </h1>
+        <p class="hero-sub fade-in">
+          Ashcairn works with leadership teams on the technology and cyber
+          risks that actually matter. Clarity on exposure, cost, and what
+          to do about it.
+        </p>
+        <div class="hero-actions fade-in">
+          <a href="#contact" class="btn-primary">Work with us →</a>
+          <a href="#what" class="btn-ghost">What we do →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO WE ARE -->
+  <section id="who" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header-left fade-in">
+          <span class="label">Who we are</span>
+        </div>
+        <div class="fade-in">
+          <h2 class="section-title">Small by design.<br>Senior by default.</h2>
+          <p class="section-body">
+            Boutique by design, owner-led in delivery. You work directly
+            with senior advisors whose background spans cyber risk
+            consulting, insurance, threat intelligence, and operational
+            continuity.
+          </p>
+          <p class="section-body" style="margin-top:16px;">
+            We help leadership teams make sound cybersecurity decisions
+            grounded in real threats and commercial reality. Our threat-led
+            approach means security investment is directed where it reduces
+            risk and protects business value — not where it looks good in
+            a report.
+          </p>
+        </div>
+      </div>
+      <div class="who-quote fade-in">
+        <p>"No layers between the problem and the people solving it. We kept it that way deliberately."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section id="what" class="section-alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header-left fade-in">
+          <span class="label">What we do</span>
+        </div>
+        <h2 class="section-title fade-in">From exposure<br>to resolution.</h2>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-card fade-in">
+          <div class="service-title">Understand</div>
+          <div class="service-subtitle">The threats you actually face</div>
+          <p class="service-desc">Most risk assessments describe categories. We identify the specific threats your organisation faces: who, how, and from where. Then give you an accurate picture of your exposure.</p>
+        </div>
+
+        <div class="service-card fade-in">
+          <div class="service-title">Measure</div>
+          <div class="service-subtitle">What it would actually cost</div>
+          <p class="service-desc">We translate technical risk into financial terms. What would an incident cost in operations, revenue, and recovery? We give leadership something concrete to work with.</p>
+        </div>
+
+        <div class="service-card fade-in">
+          <div class="service-title">Solve</div>
+          <div class="service-subtitle">Solutions built around reality</div>
+          <p class="service-desc">The right answer is one you can implement. We design solutions around your risk appetite and your budget. Not around what looks credible in a report.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team" class="section-alt" style="padding-top:0;">
+    <div class="container">
+      <div class="section-header" style="padding-top:72px; border-top: 1px solid var(--border);">
+        <div class="section-header-left fade-in">
+          <span class="label">Our team</span>
+        </div>
+        <div class="fade-in">
+          <h2 class="section-title">The people behind the advice.</h2>
+          <p class="section-body">Careers built across the major advisory firms. When you work with Ashcairn, you work with us — directly.</p>
+        </div>
+      </div>
+      <div class="team-grid">
+
+        <div class="team-card fade-in">
+          <div class="team-photo">
+            <div class="team-photo-placeholder"><span class="initials">JB</span></div>
+            <div class="team-photo-overlay"></div>
+          </div>
+          <div class="team-name">Jano Bermudes</div>
+          <div class="team-role">Director</div>
+        </div>
+
+        <div class="team-card fade-in">
+          <div class="team-photo">
+            <div class="team-photo-placeholder"><span class="initials">CM</span></div>
+            <div class="team-photo-overlay"></div>
+          </div>
+          <div class="team-name">Cal McGuire</div>
+          <div class="team-role">Director</div>
+        </div>
+
+        <div class="team-card fade-in">
+          <div class="team-photo">
+            <div class="team-photo-placeholder"><span class="initials">FW</span></div>
+            <div class="team-photo-overlay"></div>
+          </div>
+          <div class="team-name">Freddie Witzmann</div>
+          <div class="team-role">Director</div>
+        </div>
+
+        <div class="team-card fade-in">
+          <div class="team-photo">
+            <div class="team-photo-placeholder"><span class="initials">SK</span></div>
+            <div class="team-photo-overlay"></div>
+          </div>
+          <div class="team-name">Samuel Kudláč</div>
+          <div class="team-role">Director</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIALISMS -->
+  <section id="specialisms" class="section-warm">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header-left fade-in">
+          <span class="label">What we<br>specialise in</span>
+        </div>
+        <h2 class="section-title fade-in">Deep expertise.<br>Commercial clarity.</h2>
+      </div>
+      <div class="spec-list fade-in">
+        <div class="spec-item">
+          <div class="spec-title">Crisis simulation</div>
+          <div class="spec-lead">Test your response before it's tested for real</div>
+          <div class="spec-desc">Realistic, scenario-based exercises that put your organisation under genuine pressure. We simulate the operational, financial, and reputational dynamics of a live incident. The exercise surfaces gaps in process, communication, and decision-making before they matter.</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-title">Threat assessment</div>
+          <div class="spec-lead">Identify what matters. Ignore what doesn't</div>
+          <div class="spec-desc">Not a checklist. We use real-world intelligence to identify the specific threats your business faces across technology, operations, and supply chains. The output is clear, prioritised, and built to drive decisions rather than satisfy compliance.</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-title">Bespoke advisory</div>
+          <div class="spec-lead">Strategy built around your reality</div>
+          <div class="spec-desc">No standard playbook. We build cybersecurity strategies around your operational constraints, regulatory obligations, and commercial priorities. Targeted intervention or full end-to-end programme. Either way, the output is something you can actually deliver.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SELECTED WORK -->
+  <section id="work" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header-left fade-in">
+          <span class="label">Selected work</span>
+        </div>
+        <h2 class="section-title fade-in">Work across sectors<br>and situations.</h2>
+      </div>
+      <div class="tombstone-grid">
+        <div class="tombstone fade-in">
+          <div class="tombstone-sector">Critical National Infrastructure</div>
+          <div class="tombstone-engagement">CNI cyber risk assessments and architecture</div>
+          <div class="tombstone-client">UK Gas and Electricity Network</div>
+        </div>
+        <div class="tombstone fade-in">
+          <div class="tombstone-sector">Financial Services</div>
+          <div class="tombstone-engagement">Cyber supply chain risk management</div>
+          <div class="tombstone-client">Central bank, leading G7 nation</div>
+        </div>
+        <div class="tombstone fade-in">
+          <div class="tombstone-sector">Industrial Technology</div>
+          <div class="tombstone-engagement">Global OT security assessment programme</div>
+          <div class="tombstone-client">Swiss-based international industrial firm</div>
+        </div>
+        <div class="tombstone fade-in">
+          <div class="tombstone-sector">Financial Services</div>
+          <div class="tombstone-engagement">Regulatory-driven business continuity framework</div>
+          <div class="tombstone-client">Multinational banking and financial services</div>
+        </div>
+        <div class="tombstone fade-in">
+          <div class="tombstone-sector">Retail &amp; Consumer</div>
+          <div class="tombstone-engagement">Data asset mapping and governance transformation</div>
+          <div class="tombstone-client">British multinational food and fashion retailer</div>
+        </div>
+        <div class="tombstone fade-in">
+          <div class="tombstone-sector">Financial Services</div>
+          <div class="tombstone-engagement">Bespoke scenario creation for threat-led penetration testing</div>
+          <div class="tombstone-client">Global fintech and challenger banking group</div>
+        </div>
+        <div class="tombstone fade-in">
+          <div class="tombstone-sector">Government</div>
+          <div class="tombstone-engagement">Intelligence-led attack simulation to test resilience</div>
+          <div class="tombstone-client">UK central government department</div>
+        </div>
+        <div class="tombstone fade-in">
+          <div class="tombstone-sector">Financial Services</div>
+          <div class="tombstone-engagement">Outsourced cyber M&amp;A due diligence service</div>
+          <div class="tombstone-client">Leading global insurance corporation</div>
+        </div>
+        <div class="tombstone fade-in">
+          <div class="tombstone-sector">Energy &amp; Infrastructure</div>
+          <div class="tombstone-engagement">Multi-year cybersecurity improvement programme</div>
+          <div class="tombstone-client">UK and European renewable energy asset manager</div>
+        </div>
+        <div class="tombstone fade-in">
+          <div class="tombstone-sector">Telecommunications</div>
+          <div class="tombstone-engagement">Global post-breach assessment and remediation</div>
+          <div class="tombstone-client">Global telecommunications provider</div>
+        </div>
+        <div class="tombstone fade-in">
+          <div class="tombstone-sector">Financial Services</div>
+          <div class="tombstone-engagement">Cyber insurance controls review and peer benchmarking</div>
+          <div class="tombstone-client">Leading South African banking group</div>
+        </div>
+        <div class="tombstone fade-in">
+          <div class="tombstone-sector">Private Equity</div>
+          <div class="tombstone-engagement">Portfolio risk review and competitor benchmarking</div>
+          <div class="tombstone-client">London-based international private equity firm</div>
+        </div>
+      </div>
+      <p class="work-note fade-in">A selection of engagements · Further detail available on request</p>
+
+      <!-- Featured case study -->
+      <div class="cs-label fade-in"><span class="label">Featured case study</span></div>
+      <p class="cs-title fade-in">Supporting a renewable infrastructure asset manager to uplift cybersecurity across thermal electricity generating sites</p>
+      <div class="cs-card fade-in">
+        <div class="cs-grid">
+          <div class="cs-block">
+            <div class="cs-block-label">The situation</div>
+            <p>The client was early in their security journey with no in-house expertise. Unable to secure cyber insurance at a workable price, they faced real financial exposure. Previous vendors had produced solutions that were technically coherent but commercially undeliverable. Too costly and too compliance-heavy to actually implement.</p>
+          </div>
+          <div class="cs-block">
+            <div class="cs-block-label">How we worked</div>
+            <p>We went to the sites and worked directly with the people running them. Using a business risk-based methodology, we worked out what an incident would actually cost — then designed a right-sized security approach built around what the client could genuinely deliver. We stripped back anything that existed to look good rather than to work.</p>
+          </div>
+          <div class="cs-block">
+            <div class="cs-block-label">What we delivered</div>
+            <div class="cs-deliverables">
+              <div class="cs-d-item">Cyber maturity assessment and loss quantification model</div>
+              <div class="cs-d-item">High-level architecture for a full cybersecurity solution</div>
+              <div class="cs-d-item">Revised minimum viable design, built around what the client could afford</div>
+              <div class="cs-d-item">Vendor selection support for required technical products</div>
+              <div class="cs-d-item">Transformation delivery framework</div>
+            </div>
+          </div>
+          <div class="cs-outcomes">
+            <div class="cs-block-label">What changed</div>
+            <div class="cs-outcomes-list">
+              <div class="cs-outcome">Projected costs reduced from multiple millions of EUR over three years to commercially acceptable one-off and recurring values</div>
+              <div class="cs-outcome">Security responsibility moved from onsite engineers to specialist OT vendors, so the solution holds regardless of who leaves</div>
+              <div class="cs-outcome">Sites in a meaningfully stronger position to prevent or recover from an incident</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="fade-in">
+          <span class="label">Get in touch</span>
+          <h2 class="contact-headline">
+            If the problem<br>is complex,<br>
+            <strong>we should talk.</strong>
+          </h2>
+          <div class="contact-links">
+            <a href="mailto:info@ashcairn.com" class="contact-link">
+              <span class="dot"></span>info@ashcairn.com
+            </a>
+            <a href="https://linkedin.com/company/ashcairn" class="contact-link" target="_blank" rel="noopener">
+              <span class="dot"></span>linkedin.com/company/ashcairn
+            </a>
+          </div>
+        </div>
+        <div class="fade-in">
+          <p class="contact-right-label">Why Ashcairn</p>
+          <p class="contact-statement">
+            We take on a small number of engagements each year. If you are
+            working through something that needs a clear head and a senior
+            one, reach out.
+          </p>
+          <a href="mailto:info@ashcairn.com" class="btn-contact">
+            Start a conversation →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">ashcairn</span>
+    <span class="footer-right">© Ashcairn Ltd · All rights reserved</span>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+        nav.classList.remove('hero-mode');
+      } else {
+        nav.classList.remove('scrolled');
+        nav.classList.add('hero-mode');
+      }
+    });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 55);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.07 });
+
+    document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
