@@ -62,28 +62,6 @@
     .section-alt  { padding: 124px 0; background: var(--surface); }
     .section-warm { padding: 124px 0; background: var(--bg-warm); }
 
-    /* ── DARK SECTIONS ─────────────────────────────────────────── */
-    .section-dark { background: var(--ink) !important; }
-
-    .section-dark .section-title { color: rgba(255,255,255,0.88); }
-    .section-dark .section-body  { color: rgba(255,255,255,0.48); }
-
-    .section-dark .who-quote   { background: rgba(255,255,255,0.035); }
-    .section-dark .who-quote p { color: rgba(255,255,255,0.80); }
-
-    .section-dark .team-name { color: rgba(255,255,255,0.88); }
-    .section-dark .team-photo { background: #222828; }
-    .section-dark .team-photo-placeholder {
-      background: linear-gradient(160deg, #222828 0%, var(--teal-mid) 100%);
-    }
-
-    .section-dark .section-header { border-top-color: rgba(255,255,255,0.07) !important; }
-
-    .section-dark .tombstone-grid { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.07); }
-    .section-dark .work-note  { color: rgba(255,255,255,0.28); }
-    .section-dark .cs-title   { color: rgba(255,255,255,0.88); }
-    .section-dark .cs-card    { border-color: rgba(255,255,255,0.10); border-top-color: var(--teal); }
-
     /* ── Fade-in ───────────────────────────────────────────────── */
     .fade-in {
       opacity: 0;
@@ -135,7 +113,7 @@
     }
 
     .nav-logo img {
-      height: 28px;
+      height: 34px;
       width: auto;
       display: block;
     }
@@ -201,7 +179,7 @@
       position: absolute;
       bottom: 0; left: 0; right: 0;
       height: 140px;
-      background: linear-gradient(to top, var(--ink) 0%, transparent 100%);
+      background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
       pointer-events: none;
     }
 
@@ -800,10 +778,10 @@
     }
 
     .footer-logo img {
-      height: 22px;
+      height: 28px;
       width: auto;
       display: block;
-      opacity: 0.45;
+      opacity: 0.65;
     }
 
     .footer-right {
@@ -935,7 +913,7 @@
   </section>
 
   <!-- WHO WE ARE -->
-  <section id="who" class="section section-dark">
+  <section id="who" class="section-alt">
     <div class="container">
       <div class="section-header">
         <div class="section-header-left fade-in">
@@ -965,7 +943,7 @@
   </section>
 
   <!-- WHAT WE DO -->
-  <section id="what" class="section-alt">
+  <section id="what" class="section">
     <div class="container">
       <div class="section-header">
         <div class="section-header-left fade-in">
@@ -998,7 +976,7 @@
   </section>
 
   <!-- TEAM -->
-  <section id="team" class="section-alt section-dark" style="padding-top:0;">
+  <section id="team" class="section-alt" style="padding-top:0;">
     <div class="container">
       <div class="section-header" style="padding-top:72px; border-top: 1px solid var(--border);">
         <div class="section-header-left fade-in">
@@ -1052,7 +1030,7 @@
   </section>
 
   <!-- SPECIALISMS -->
-  <section id="specialisms" class="section-warm">
+  <section id="specialisms" class="section">
     <div class="container">
       <div class="section-header">
         <div class="section-header-left fade-in">
@@ -1081,7 +1059,7 @@
   </section>
 
   <!-- SELECTED WORK -->
-  <section id="work" class="section section-dark">
+  <section id="work" class="section-alt">
     <div class="container">
       <div class="section-header">
         <div class="section-header-left fade-in">
