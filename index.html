@@ -39,6 +39,7 @@
       font-size: 16px;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     ::selection { background: var(--teal); color: white; }
@@ -65,9 +66,9 @@
     /* ── Fade-in ───────────────────────────────────────────────── */
     .fade-in {
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(12px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
 
@@ -236,7 +237,7 @@
       content: '';
       width: 40px; height: 1px;
       background: var(--teal);
-      opacity: 0.4;
+      opacity: 0.55;
     }
 
     .hero-headline {
@@ -300,7 +301,7 @@
       grid-template-columns: 200px 1fr;
       gap: 56px;
       align-items: start;
-      margin-bottom: 72px;
+      margin-bottom: 64px;
     }
 
     .section-header-left { padding-top: 4px; }
@@ -326,9 +327,10 @@
     /* ── WHO WE ARE ────────────────────────────────────────────── */
     .who-quote {
       margin-top: 48px;
-      padding: 40px 52px;
+      padding: 36px 48px;
       background: var(--bg);
       border-left: 3px solid var(--teal);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.04);
       position: relative;
       overflow: hidden;
     }
@@ -368,14 +370,14 @@
       background: var(--surface);
       padding: 40px 32px;
       border: 1px solid var(--border);
-      border-top: 2px solid var(--border);
-      transition: border-color 0.25s, border-top-color 0.25s, box-shadow 0.3s, transform 0.3s;
+      border-top: 2px solid transparent;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      transition: border-top-color 0.25s, box-shadow 0.3s, transform 0.3s;
     }
 
     .service-card:hover {
-      border-color: var(--border);
       border-top-color: var(--teal);
-      box-shadow: 0 12px 40px rgba(13,148,136,0.09);
+      box-shadow: 0 10px 36px rgba(0,0,0,0.08);
       transform: translateY(-3px);
     }
 
@@ -419,7 +421,7 @@
     .team-photo {
       width: 100%;
       aspect-ratio: 3/4;
-      background: var(--bg-warm);
+      background: #dde8e7;
       margin-bottom: 20px;
       position: relative;
       overflow: hidden;
@@ -443,15 +445,15 @@
       justify-content: flex-end;
       padding-bottom: 28px;
       flex-direction: column;
-      background: linear-gradient(160deg, var(--bg-warm) 0%, var(--teal-mid) 100%);
+      background: linear-gradient(160deg, #dde8e7 0%, #a8d4d0 100%);
     }
 
     .team-photo-placeholder .initials {
       font-family: var(--font-head);
-      font-size: 36px;
+      font-size: 40px;
       font-weight: 300;
       color: var(--teal);
-      opacity: 0.6;
+      opacity: 0.75;
     }
 
     .team-photo-overlay {
@@ -494,11 +496,12 @@
       flex-direction: column;
       border: 1px solid var(--border);
       border-top: 2px solid var(--teal);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
       transition: box-shadow 0.3s, transform 0.3s;
     }
 
     .spec-item:hover {
-      box-shadow: 0 12px 40px rgba(13,148,136,0.09);
+      box-shadow: 0 10px 36px rgba(0,0,0,0.08);
       transform: translateY(-3px);
     }
 
@@ -602,6 +605,7 @@
       border: 1px solid var(--border);
       border-top: 3px solid var(--teal);
       padding: 48px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
     }
 
     .cs-grid {
@@ -737,16 +741,16 @@
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.35);
       margin-bottom: 32px;
     }
 
     .contact-statement {
       font-size: 15px;
       font-weight: 300;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.8;
-      border-left: 2px solid rgba(13,148,136,0.3);
+      color: rgba(255,255,255,0.52);
+      line-height: 1.85;
+      border-left: 2px solid rgba(13,148,136,0.45);
       padding-left: 22px;
       margin-bottom: 36px;
     }
@@ -771,7 +775,7 @@
     footer {
       background: #0f0f0f;
       border-top: 1px solid rgba(13,148,136,0.18);
-      padding: 28px 48px;
+      padding: 32px 48px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -787,7 +791,7 @@
     .footer-right {
       font-family: var(--font-mono);
       font-size: 10.5px;
-      color: rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.32);
       letter-spacing: 0.05em;
     }
 
