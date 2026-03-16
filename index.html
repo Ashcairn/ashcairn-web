@@ -14,10 +14,11 @@
 
     :root {
       --bg:         #ecf0f0;
-      --bg-warm:    #e0e6e6;
+      --bg-warm:    #ecf0f0;
+      --bg-deep:    #e0e6e6;
       --surface:    #ffffff;
-      --border:     #e8e4de;
-      --border2:    #d5d0c8;
+      --border:     #dde3e3;
+      --border2:    #c9d0d0;
       --teal:       #0d9488;
       --teal-light: #e6f5f3;
       --teal-mid:   #ccede9;
@@ -39,6 +40,7 @@
       font-size: 16px;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     ::selection { background: var(--teal); color: white; }
@@ -60,14 +62,15 @@
 
     .section      { padding: 124px 0; }
     .section-alt  { padding: 124px 0; background: var(--surface); }
+    .section-deep { padding: 124px 0; background: var(--bg-deep); }
     .section-warm { padding: 124px 0; background: var(--bg-warm); }
 
     /* ── Fade-in ───────────────────────────────────────────────── */
     .fade-in {
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(12px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
 
@@ -85,7 +88,6 @@
 
     nav.hero-mode { background: transparent; }
 
-    nav.hero-mode .nav-logo { color: var(--ink); }
     nav.hero-mode .nav-links a:not(.nav-cta) { color: var(--ink-soft); }
     nav.hero-mode .nav-links a:not(.nav-cta):hover { color: var(--teal); }
     nav.hero-mode .nav-cta {
@@ -96,11 +98,10 @@
     nav.hero-mode .nav-cta:hover { background: var(--teal) !important; }
 
     nav.scrolled {
-      background: rgba(247,246,243,0.94) !important;
+      background: rgba(236,240,240,0.94) !important;
       backdrop-filter: blur(16px);
       box-shadow: 0 1px 0 var(--border);
     }
-    nav.scrolled .nav-logo { color: var(--ink) !important; }
     nav.scrolled .nav-links a:not(.nav-cta) { color: var(--ink-soft) !important; }
     nav.scrolled .nav-cta {
       background: var(--ink) !important;
@@ -109,14 +110,15 @@
     }
 
     .nav-logo {
-      font-family: 'Inter', sans-serif;
-      font-size: 21px;
-      font-weight: 900;
-      letter-spacing: -0.05em;
-      text-transform: none;
-      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
       text-decoration: none;
-      transition: color 0.3s;
+    }
+
+    .nav-logo img {
+      height: 34px;
+      width: auto;
+      display: block;
     }
     .nav-links { display: flex; align-items: center; gap: 36px; }
 
@@ -164,11 +166,11 @@
       inset: 0;
       background: linear-gradient(
         105deg,
-        rgba(247,246,243,0.98) 0%,
-        rgba(247,246,243,0.96) 38%,
-        rgba(247,246,243,0.72) 55%,
-        rgba(247,246,243,0.25) 72%,
-        rgba(247,246,243,0.05) 87%,
+        rgba(236,240,240,0.98) 0%,
+        rgba(236,240,240,0.96) 38%,
+        rgba(236,240,240,0.72) 55%,
+        rgba(236,240,240,0.25) 72%,
+        rgba(236,240,240,0.05) 87%,
         transparent 100%
       );
       pointer-events: none;
@@ -238,8 +240,8 @@
     .hero-label::after {
       content: '';
       width: 40px; height: 1px;
-      background: var(--ink);
-      opacity: 0.4;
+      background: var(--teal);
+      opacity: 0.55;
     }
 
     .hero-headline {
@@ -303,7 +305,7 @@
       grid-template-columns: 200px 1fr;
       gap: 56px;
       align-items: start;
-      margin-bottom: 72px;
+      margin-bottom: 64px;
     }
 
     .section-header-left { padding-top: 4px; }
@@ -329,9 +331,9 @@
     /* ── WHO WE ARE ────────────────────────────────────────────── */
     .who-quote {
       margin-top: 48px;
-      padding: 40px 52px;
-      background: var(--bg);
-      border-left: 3px solid var(--teal);
+      padding: 36px 48px;
+      background: var(--teal-light);
+      border-left: 2px solid var(--teal);
       position: relative;
       overflow: hidden;
     }
@@ -342,7 +344,7 @@
       font-size: 140px;
       font-weight: 600;
       color: var(--teal);
-      opacity: 0.07;
+      opacity: 0.10;
       position: absolute;
       top: -18px;
       left: 36px;
@@ -352,11 +354,11 @@
 
     .who-quote p {
       font-family: var(--font-head);
-      font-size: 22px;
+      font-size: 21px;
       font-weight: 300;
       color: var(--ink);
       line-height: 1.65;
-      letter-spacing: -0.022em;
+      letter-spacing: -0.02em;
       position: relative;
     }
 
@@ -371,14 +373,14 @@
       background: var(--surface);
       padding: 40px 32px;
       border: 1px solid var(--border);
-      border-top: 2px solid var(--border);
-      transition: border-color 0.25s, border-top-color 0.25s, box-shadow 0.3s, transform 0.3s;
+      border-top: 2px solid transparent;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      transition: border-top-color 0.25s, box-shadow 0.3s, transform 0.3s;
     }
 
     .service-card:hover {
-      border-color: var(--border);
       border-top-color: var(--teal);
-      box-shadow: 0 12px 40px rgba(13,148,136,0.09);
+      box-shadow: 0 10px 36px rgba(0,0,0,0.08);
       transform: translateY(-3px);
     }
 
@@ -421,7 +423,7 @@
     .team-photo {
       width: 100%;
       aspect-ratio: 3/4;
-      background: var(--bg-warm);
+      background: #dde8e7;
       margin-bottom: 20px;
       position: relative;
       overflow: hidden;
@@ -445,15 +447,15 @@
       justify-content: flex-end;
       padding-bottom: 28px;
       flex-direction: column;
-      background: linear-gradient(160deg, var(--bg-warm) 0%, var(--teal-mid) 100%);
+      background: linear-gradient(160deg, #dde8e7 0%, #a8d4d0 100%);
     }
 
     .team-photo-placeholder .initials {
       font-family: var(--font-head);
-      font-size: 36px;
+      font-size: 40px;
       font-weight: 300;
       color: var(--teal);
-      opacity: 0.6;
+      opacity: 0.75;
     }
 
     .team-photo-overlay {
@@ -496,11 +498,12 @@
       flex-direction: column;
       border: 1px solid var(--border);
       border-top: 2px solid var(--teal);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
       transition: box-shadow 0.3s, transform 0.3s;
     }
 
     .spec-item:hover {
-      box-shadow: 0 12px 40px rgba(13,148,136,0.09);
+      box-shadow: 0 10px 36px rgba(0,0,0,0.08);
       transform: translateY(-3px);
     }
 
@@ -604,6 +607,7 @@
       border: 1px solid var(--border);
       border-top: 3px solid var(--teal);
       padding: 48px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
     }
 
     .cs-grid {
@@ -739,16 +743,16 @@
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.35);
       margin-bottom: 32px;
     }
 
     .contact-statement {
       font-size: 15px;
       font-weight: 300;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.8;
-      border-left: 2px solid rgba(13,148,136,0.3);
+      color: rgba(255,255,255,0.52);
+      line-height: 1.85;
+      border-left: 2px solid rgba(13,148,136,0.45);
       padding-left: 22px;
       margin-bottom: 36px;
     }
@@ -773,24 +777,28 @@
     footer {
       background: #0f0f0f;
       border-top: 1px solid rgba(13,148,136,0.18);
-      padding: 28px 48px;
+      padding: 32px 48px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
     .footer-logo {
-      font-family: 'Inter', sans-serif;
-      font-size: 17px;
-      font-weight: 900;
-      letter-spacing: -0.05em;
-      color: rgba(255,255,255,0.4);
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-logo img {
+      height: 28px;
+      width: auto;
+      display: block;
+      opacity: 0.80;
     }
 
     .footer-right {
       font-family: var(--font-mono);
       font-size: 10.5px;
-      color: rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.50);
       letter-spacing: 0.05em;
     }
 
@@ -808,7 +816,7 @@
       .contact-grid { grid-template-columns: 1fr; gap: 48px; }
       nav { padding: 18px 24px; }
       .container { padding: 0 24px; }
-      .section, .section-alt, .section-warm { padding: 72px 0; }
+      .section, .section-alt, .section-deep, .section-warm { padding: 72px 0; }
       .nav-links a:not(.nav-cta) { display: none; }
       footer { flex-direction: column; gap: 10px; text-align: center; }
 
@@ -825,10 +833,10 @@
       #hero::before {
         background: linear-gradient(
           to bottom,
-          rgba(247,246,243,0.97) 0%,
-          rgba(247,246,243,0.94) 45%,
-          rgba(247,246,243,0.82) 70%,
-          rgba(247,246,243,0.55) 100%
+          rgba(236,240,240,0.97) 0%,
+          rgba(236,240,240,0.94) 45%,
+          rgba(236,240,240,0.82) 70%,
+          rgba(236,240,240,0.55) 100%
         );
       }
 
@@ -856,10 +864,10 @@
       #hero::before {
         background: linear-gradient(
           to bottom,
-          rgba(247,246,243,0.99) 0%,
-          rgba(247,246,243,0.97) 55%,
-          rgba(247,246,243,0.85) 75%,
-          rgba(247,246,243,0.60) 100%
+          rgba(236,240,240,0.99) 0%,
+          rgba(236,240,240,0.97) 55%,
+          rgba(236,240,240,0.85) 75%,
+          rgba(236,240,240,0.60) 100%
         );
       }
 
@@ -874,7 +882,9 @@
 
   <!-- NAV -->
   <nav id="nav" class="hero-mode">
-    <a href="#hero" class="nav-logo">ashcairn</a>
+    <a href="#hero" class="nav-logo">
+      <img src="logos/Ashcairn%20Logo%20Dark.svg" alt="Ashcairn" />
+    </a>
     <div class="nav-links">
       <a href="#who">About</a>
       <a href="#what">Services</a>
@@ -966,7 +976,7 @@
   </section>
 
   <!-- TEAM -->
-  <section id="team" class="section">
+  <section id="team" class="section" style="padding-top:0;">
     <div class="container">
       <div class="section-header">
         <div class="section-header-left fade-in">
@@ -1019,8 +1029,37 @@
     </div>
   </section>
 
-  <!-- WHO WE WORK FOR -->
-  <section id="work" class="section-warm">
+  <!-- SPECIALISMS -->
+  <section id="specialisms" class="section-deep">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header-left fade-in">
+          <span class="label">What we<br>specialise in</span>
+        </div>
+        <h2 class="section-title fade-in">Deep expertise.<br>Commercial clarity.</h2>
+      </div>
+      <div class="spec-list fade-in">
+        <div class="spec-item">
+          <div class="spec-title">Crisis simulation</div>
+          <div class="spec-lead">Test your response before it's tested for real</div>
+          <div class="spec-desc">Realistic, scenario-based exercises that put your organisation under genuine pressure. We simulate the operational, financial, and reputational dynamics of a live incident. The exercise surfaces gaps in process, communication, and decision-making before they matter.</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-title">Threat assessment</div>
+          <div class="spec-lead">Identify what matters. Ignore what doesn't</div>
+          <div class="spec-desc">Not a checklist. We use real-world intelligence to identify the specific threats your business faces across technology, operations, and supply chains. The output is clear, prioritised, and built to drive decisions rather than satisfy compliance.</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-title">Bespoke advisory</div>
+          <div class="spec-lead">Strategy built around your reality</div>
+          <div class="spec-desc">No standard playbook. We build cybersecurity strategies around your operational constraints, regulatory obligations, and commercial priorities. Targeted intervention or full end-to-end programme. Either way, the output is something you can actually deliver.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SELECTED WORK -->
+  <section id="work" class="section-alt">
     <div class="container">
       <div class="section-header">
         <div class="section-header-left fade-in">
@@ -1164,7 +1203,9 @@
 
   <!-- FOOTER -->
   <footer>
-    <span class="footer-logo">ashcairn</span>
+    <span class="footer-logo">
+      <img src="logos/Ashcairn%20Logo%20Light.svg" alt="Ashcairn" />
+    </span>
     <span class="footer-right">© Ashcairn Ltd · All rights reserved</span>
   </footer>
 
