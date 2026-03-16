@@ -13,8 +13,8 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:         #f7f6f3;
-      --bg-warm:    #f0ede8;
+      --bg:         #ecf0f0;
+      --bg-warm:    #e0e6e6;
       --surface:    #ffffff;
       --border:     #e8e4de;
       --border2:    #d5d0c8;
@@ -233,10 +233,12 @@
       margin-bottom: 40px;
     }
 
+    .hero-label .label { color: var(--ink); }
+
     .hero-label::after {
       content: '';
       width: 40px; height: 1px;
-      background: var(--teal);
+      background: var(--ink);
       opacity: 0.4;
     }
 
@@ -407,7 +409,6 @@
     }
 
     /* ── TEAM ──────────────────────────────────────────────────── */
-    #team { background: var(--surface); }
 
     .team-grid {
       display: grid;
@@ -895,14 +896,14 @@
           <span class="label">Technology Risk · Resilience · Advisory</span>
         </div>
         <h1 class="hero-headline fade-in">
-          Find the risk.<br>
-          Understand the cost.<br>
+          Understand the risk.<br>
+          Measure the impact.<br>
           <strong>Fix what matters.</strong>
         </h1>
         <p class="hero-sub fade-in">
-          Ashcairn works with leadership teams on the technology and cyber
-          risks that actually matter. Clarity on exposure, cost, and what
-          to do about it.
+          Ashcairn works directly with leadership teams to identify what
+          could go wrong, fix what needs fixing, and build the capability
+          to handle what comes next.
         </p>
         <div class="hero-actions fade-in">
           <a href="#contact" class="btn-primary">Work with us →</a>
@@ -913,62 +914,51 @@
   </section>
 
   <!-- WHO WE ARE -->
-  <section id="who" class="section">
+  <section id="who" class="section-alt">
     <div class="container">
       <div class="section-header">
         <div class="section-header-left fade-in">
           <span class="label">Who we are</span>
         </div>
         <div class="fade-in">
-          <h2 class="section-title">Small by design.<br>Senior by default.</h2>
+          <h2 class="section-title">Boutique by design.<br>Senior by default.</h2>
           <p class="section-body">
-            Boutique by design, owner-led in delivery. You work directly
-            with senior advisors whose background spans cyber risk
-            consulting, insurance, threat intelligence, and operational
-            continuity.
-          </p>
-          <p class="section-body" style="margin-top:16px;">
-            We help leadership teams make sound cybersecurity decisions
-            grounded in real threats and commercial reality. Our threat-led
-            approach means security investment is directed where it reduces
-            risk and protects business value — not where it looks good in
-            a report.
+            Our team blends deep technical expertise and client service
+            experience, gained from years of delivery in leading advisory
+            firms.
           </p>
         </div>
-      </div>
-      <div class="who-quote fade-in">
-        <p>"No layers between the problem and the people solving it. We kept it that way deliberately."</p>
       </div>
     </div>
   </section>
 
   <!-- WHAT WE DO -->
-  <section id="what" class="section-alt">
+  <section id="what" class="section-warm">
     <div class="container">
       <div class="section-header">
         <div class="section-header-left fade-in">
           <span class="label">What we do</span>
         </div>
-        <h2 class="section-title fade-in">From exposure<br>to resolution.</h2>
+        <h2 class="section-title fade-in">Building long-term revenue<br>protection and operational resilience.</h2>
       </div>
       <div class="services-grid">
 
         <div class="service-card fade-in">
           <div class="service-title">Understand</div>
           <div class="service-subtitle">The threats you actually face</div>
-          <p class="service-desc">Most risk assessments describe categories. We identify the specific threats your organisation faces: who, how, and from where. Then give you an accurate picture of your exposure.</p>
+          <p class="service-desc">We identify the specific threats you face: who, how, and from where — whether from sophisticated cyber crime groups, insiders and accidents, through to changing regulations.</p>
         </div>
 
         <div class="service-card fade-in">
           <div class="service-title">Measure</div>
-          <div class="service-subtitle">What it would actually cost</div>
+          <div class="service-subtitle">What impacts you could suffer</div>
           <p class="service-desc">We translate technical risk into financial terms. What would an incident cost in operations, revenue, and recovery? We give leadership something concrete to work with.</p>
         </div>
 
         <div class="service-card fade-in">
           <div class="service-title">Solve</div>
           <div class="service-subtitle">Solutions built around reality</div>
-          <p class="service-desc">The right answer is one you can implement. We design solutions around your risk appetite and your budget. Not around what looks credible in a report.</p>
+          <p class="service-desc">The right answer is one you can implement. We design solutions around your risk appetite and budget, not what looks good in a report.</p>
         </div>
 
       </div>
@@ -976,9 +966,9 @@
   </section>
 
   <!-- TEAM -->
-  <section id="team" class="section-alt" style="padding-top:0;">
+  <section id="team" class="section">
     <div class="container">
-      <div class="section-header" style="padding-top:72px; border-top: 1px solid var(--border);">
+      <div class="section-header">
         <div class="section-header-left fade-in">
           <span class="label">Our team</span>
         </div>
@@ -1029,43 +1019,14 @@
     </div>
   </section>
 
-  <!-- SPECIALISMS -->
-  <section id="specialisms" class="section-warm">
+  <!-- WHO WE WORK FOR -->
+  <section id="work" class="section-warm">
     <div class="container">
       <div class="section-header">
         <div class="section-header-left fade-in">
-          <span class="label">What we<br>specialise in</span>
+          <span class="label">Who we work for</span>
         </div>
-        <h2 class="section-title fade-in">Deep expertise.<br>Commercial clarity.</h2>
-      </div>
-      <div class="spec-list fade-in">
-        <div class="spec-item">
-          <div class="spec-title">Crisis simulation</div>
-          <div class="spec-lead">Test your response before it's tested for real</div>
-          <div class="spec-desc">Realistic, scenario-based exercises that put your organisation under genuine pressure. We simulate the operational, financial, and reputational dynamics of a live incident. The exercise surfaces gaps in process, communication, and decision-making before they matter.</div>
-        </div>
-        <div class="spec-item">
-          <div class="spec-title">Threat assessment</div>
-          <div class="spec-lead">Identify what matters. Ignore what doesn't</div>
-          <div class="spec-desc">Not a checklist. We use real-world intelligence to identify the specific threats your business faces across technology, operations, and supply chains. The output is clear, prioritised, and built to drive decisions rather than satisfy compliance.</div>
-        </div>
-        <div class="spec-item">
-          <div class="spec-title">Bespoke advisory</div>
-          <div class="spec-lead">Strategy built around your reality</div>
-          <div class="spec-desc">No standard playbook. We build cybersecurity strategies around your operational constraints, regulatory obligations, and commercial priorities. Targeted intervention or full end-to-end programme. Either way, the output is something you can actually deliver.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SELECTED WORK -->
-  <section id="work" class="section">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-header-left fade-in">
-          <span class="label">Selected work</span>
-        </div>
-        <h2 class="section-title fade-in">Work across sectors<br>and situations.</h2>
+        <h2 class="section-title fade-in">Extensive experience across<br>industries and client challenges.</h2>
       </div>
       <div class="tombstone-grid">
         <div class="tombstone fade-in">
@@ -1129,7 +1090,7 @@
           <div class="tombstone-client">London-based international private equity firm</div>
         </div>
       </div>
-      <p class="work-note fade-in">A selection of engagements · Further detail available on request</p>
+      <p class="work-note fade-in">A non-exhaustive selection of engagements · Further detail available on request</p>
 
       <!-- Featured case study -->
       <div class="cs-label fade-in"><span class="label">Featured case study</span></div>
