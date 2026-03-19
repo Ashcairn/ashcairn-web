@@ -423,7 +423,7 @@
     .team-photo {
       width: 100%;
       aspect-ratio: 3/4;
-      background: #dde8e7;
+      background: linear-gradient(160deg, #dde8e7 0%, #a8d4d0 100%);
       margin-bottom: 20px;
       position: relative;
       overflow: hidden;
@@ -465,6 +465,53 @@
       background: linear-gradient(to top, rgba(26,26,26,0.08), transparent);
     }
 
+    .team-bio {
+      position: absolute;
+      inset: 0;
+      background: rgba(14, 20, 20, 0.93);
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.32s cubic-bezier(0.16,1,0.3,1), transform 0.32s cubic-bezier(0.16,1,0.3,1);
+      pointer-events: none;
+    }
+
+    .team-card:hover .team-bio {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .bio-name {
+      font-family: var(--font-head);
+      font-size: clamp(18px, 1.8vw, 22px);
+      font-weight: 400;
+      color: #ffffff;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+      flex-shrink: 0;
+    }
+
+    .bio-rule {
+      width: 24px;
+      height: 1px;
+      background: rgba(13, 148, 136, 0.7);
+      margin-bottom: 10px;
+      flex-shrink: 0;
+    }
+
+    .bio-text {
+      font-size: 12px;
+      line-height: 1.6;
+      color: rgba(220, 235, 233, 0.78);
+      overflow: hidden;
+    }
+
     .team-name {
       font-family: var(--font-head);
       font-size: 16px;
@@ -474,14 +521,20 @@
       letter-spacing: -0.02em;
     }
 
-    .team-role {
-      font-family: var(--font-head);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: var(--teal);
+    .team-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 6px;
       margin-bottom: 12px;
+    }
+    .team-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      color: var(--ink-mid);
+      border: 1px solid rgba(26,26,26,0.22);
+      padding: 3px 8px;
     }
 
     /* ── SPECIALISMS ───────────────────────────────────────────── */
@@ -992,38 +1045,74 @@
 
         <div class="team-card fade-in">
           <div class="team-photo">
-            <div class="team-photo-placeholder"><span class="initials">JB</span></div>
+            <img src="team-sk.jpg" alt="Jano Bermudes">
             <div class="team-photo-overlay"></div>
+            <div class="team-bio">
+              <div class="bio-name">Jano Bermudes</div>
+              <div class="bio-rule"></div>
+              <p class="bio-text">Advises boards and executive teams on technology risk, cyber crime, insider threats, and operational resilience. Former Big Four advisory, insurance, and legal sector experience across critical infrastructure and security architecture.</p>
+            </div>
           </div>
           <div class="team-name">Jano Bermudes</div>
-          <div class="team-role">Director</div>
+          <div class="team-tags">
+            <span class="team-tag">Technology Risk</span>
+            <span class="team-tag">Critical Infrastructure</span>
+            <span class="team-tag">Security Architecture</span>
+          </div>
         </div>
 
         <div class="team-card fade-in">
           <div class="team-photo">
-            <div class="team-photo-placeholder"><span class="initials">CM</span></div>
+            <img src="team-cm.jpg" alt="Cal McGuire">
             <div class="team-photo-overlay"></div>
+            <div class="team-bio">
+              <div class="bio-name">Cal McGuire</div>
+              <div class="bio-rule"></div>
+              <p class="bio-text">Quantifies the financial impact of cyber and operational risk for boards and senior leadership. Former Marsh, PwC, and KPMG. Deep expertise across financial services, retail, manufacturing, and PE-backed businesses.</p>
+            </div>
           </div>
           <div class="team-name">Cal McGuire</div>
-          <div class="team-role">Director</div>
+          <div class="team-tags">
+            <span class="team-tag">Risk Quantification</span>
+            <span class="team-tag">Risk Transfer</span>
+            <span class="team-tag">M&amp;A</span>
+          </div>
         </div>
 
         <div class="team-card fade-in">
           <div class="team-photo">
-            <div class="team-photo-placeholder"><span class="initials">FW</span></div>
+            <img src="team-fw.jpg" alt="Freddie Witzmann">
             <div class="team-photo-overlay"></div>
+            <div class="team-bio">
+              <div class="bio-name">Freddie Witzmann</div>
+              <div class="bio-rule"></div>
+              <p class="bio-text">Specialist in cyber readiness and regulatory compliance within financial services. Former Capgemini, Marsh, and CyXcel. Led hundreds of cyber exercises and simulations for major organisations as Head of Cyber Exercise and Preparedness at Marsh.</p>
+            </div>
           </div>
           <div class="team-name">Freddie Witzmann</div>
-          <div class="team-role">Director</div>
+          <div class="team-tags">
+            <span class="team-tag">Operational Resilience</span>
+            <span class="team-tag">Crisis Simulation</span>
+            <span class="team-tag">Regulatory Compliance</span>
+          </div>
         </div>
 
         <div class="team-card fade-in">
           <div class="team-photo">
-            <div class="team-photo-placeholder"><span class="initials">SK</span></div>
+            <img src="team-jb.jpg" alt="Samuel Kudláč">
             <div class="team-photo-overlay"></div>
+            <div class="team-bio">
+              <div class="bio-name">Samuel Kudláč</div>
+              <div class="bio-rule"></div>
+              <p class="bio-text">Provides boards and senior leadership with intelligence-led assessments of the threats that matter. Translates geopolitical dynamics into actionable insight for executive decision-making. Professional background in threat intelligence and supply chain cyber risk management.</p>
+            </div>
           </div>
           <div class="team-name">Samuel Kudláč</div>
-          <div class="team-role">Director</div>
+          <div class="team-tags">
+            <span class="team-tag">Threat Research</span>
+            <span class="team-tag">Geopolitics</span>
+            <span class="team-tag">Strategic Intelligence</span>
+          </div>
         </div>
 
       </div>
