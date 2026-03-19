@@ -521,14 +521,20 @@
       letter-spacing: -0.02em;
     }
 
-    .team-role {
-      font-family: var(--font-head);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: var(--teal);
+    .team-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 6px;
       margin-bottom: 12px;
+    }
+    .team-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      color: var(--ink-mid);
+      border: 1px solid rgba(26,26,26,0.22);
+      padding: 3px 8px;
     }
 
     /* ── SPECIALISMS ───────────────────────────────────────────── */
@@ -1048,7 +1054,11 @@
             </div>
           </div>
           <div class="team-name">Jano Bermudes</div>
-          <div class="team-role">Cyber &amp; Technology Risk</div>
+          <div class="team-tags">
+            <span class="team-tag">Technology Risk</span>
+            <span class="team-tag">Critical Infrastructure</span>
+            <span class="team-tag">Security Architecture</span>
+          </div>
         </div>
 
         <div class="team-card fade-in">
@@ -1062,7 +1072,11 @@
             </div>
           </div>
           <div class="team-name">Cal McGuire</div>
-          <div class="team-role">Digital Risk &amp; Resilience</div>
+          <div class="team-tags">
+            <span class="team-tag">Risk Quantification</span>
+            <span class="team-tag">Risk Transfer</span>
+            <span class="team-tag">M&amp;A</span>
+          </div>
         </div>
 
         <div class="team-card fade-in">
@@ -1076,7 +1090,11 @@
             </div>
           </div>
           <div class="team-name">Freddie Witzmann</div>
-          <div class="team-role">Operational Resilience</div>
+          <div class="team-tags">
+            <span class="team-tag">Operational Resilience</span>
+            <span class="team-tag">Crisis Simulation</span>
+            <span class="team-tag">Regulatory Compliance</span>
+          </div>
         </div>
 
         <div class="team-card fade-in">
@@ -1090,7 +1108,11 @@
             </div>
           </div>
           <div class="team-name">Samuel Kudláč</div>
-          <div class="team-role">Cyber Threat Intelligence</div>
+          <div class="team-tags">
+            <span class="team-tag">Threat Research</span>
+            <span class="team-tag">Geopolitics</span>
+            <span class="team-tag">Strategic Intelligence</span>
+          </div>
         </div>
 
       </div>
