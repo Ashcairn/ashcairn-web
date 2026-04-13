@@ -3,7 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ashcairn — boutique advisory for technology risk, cyber resilience, and operational continuity. We help leadership teams make sound technology risk decisions, grounded in real threats and commercial reality." />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:;" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="canonical" href="https://www.ashcairn.com/" />
+  <link rel="icon" type="image/svg+xml" href="logos/Ashcairn%20Logo%20Dark.svg" />
   <title>Ashcairn — Technology Risk &amp; Resilience</title>
+  <noscript><style>.fade-in{opacity:1 !important;transform:none !important;}</style></noscript>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,900;1,300&display=swap" rel="stylesheet" />
@@ -14,7 +21,6 @@
 
     :root {
       --bg:         #ecf0f0;
-      --bg-warm:    #ecf0f0;
       --bg-deep:    #e0e6e6;
       --surface:    #ffffff;
       --border:     #dde3e3;
@@ -150,7 +156,7 @@
       min-height: 100vh;
       display: flex;
       align-items: center;
-      padding: 140px 0 100px;
+      padding: 100px 0 100px;
       position: relative;
       overflow: hidden;
       background-image: url('ashcairn-hero-dave.jpg');
@@ -186,62 +192,12 @@
       pointer-events: none;
     }
 
-    /* Scroll indicator */
-    .hero-scroll {
-      position: absolute;
-      bottom: 52px;
-      left: 48px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      z-index: 2;
-    }
-
-    .hero-scroll-label {
-      font-family: var(--font-head);
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-faint);
-      writing-mode: vertical-rl;
-    }
-
-    .hero-scroll-line {
-      width: 1px;
-      height: 44px;
-      background: linear-gradient(to bottom, var(--teal), transparent);
-      animation: scrollPulse 2.2s ease-in-out infinite;
-    }
-
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.35; transform: scaleY(0.9); }
-      55%       { opacity: 1;    transform: scaleY(1);   }
-    }
-
     #hero .container { padding-left: 0; }
 
     .hero-inner {
       max-width: 490px;
       position: relative;
       z-index: 1;
-    }
-
-    .hero-label {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 40px;
-    }
-
-    .hero-label .label { color: var(--ink); }
-
-    .hero-label::after {
-      content: '';
-      width: 40px; height: 1px;
-      background: var(--teal);
-      opacity: 0.55;
     }
 
     .hero-headline {
@@ -870,7 +826,8 @@
       nav { padding: 18px 24px; }
       .container { padding: 0 24px; }
       .section, .section-alt, .section-deep, .section-warm { padding: 72px 0; }
-      .nav-links a:not(.nav-cta) { display: none; }
+      .nav-links { gap: 20px; }
+      .nav-links a { font-size: 12px; }
       footer { flex-direction: column; gap: 10px; text-align: center; }
 
       /* Hero: restore container left padding (overridden by desktop rule) */
@@ -892,9 +849,6 @@
           rgba(236,240,240,0.55) 100%
         );
       }
-
-      /* Align scroll indicator with new container padding */
-      .hero-scroll { left: 24px; }
 
       /* Allow hero-inner to use full available width */
       .hero-inner { max-width: 100%; }
@@ -926,7 +880,7 @@
 
       .hero-headline { font-size: 36px; }
       .hero-sub { font-size: 15px; }
-      .hero-scroll { display: none; }
+      .nav-links a:not(.nav-cta) { display: none; }
     }
 
   </style>
@@ -949,25 +903,15 @@
 
   <!-- HERO -->
   <section id="hero">
-    <div class="hero-scroll" aria-hidden="true">
-      <span class="hero-scroll-label">Scroll</span>
-      <div class="hero-scroll-line"></div>
-    </div>
     <div class="container">
       <div class="hero-inner">
-        <div class="hero-label fade-in">
-          <span class="label">Technology Risk · Resilience · Advisory</span>
-        </div>
         <h1 class="hero-headline fade-in">
-          Understand<br>
-          the risk.<br>
-          Measure the impact.<br>
+          Understand your risk.<br>
           <strong>Fix what matters.</strong>
         </h1>
         <p class="hero-sub fade-in">
-          Ashcairn works directly with leadership teams to identify what
-          could go wrong, fix what needs fixing, and build the capability
-          to handle what comes next.
+          We help leadership teams make sound technology risk decisions,
+          grounded in real threats and commercial reality.
         </p>
         <div class="hero-actions fade-in">
           <a href="#contact" class="btn-primary">Work with us →</a>
@@ -985,11 +929,10 @@
           <span class="label">Who we are</span>
         </div>
         <div class="fade-in">
-          <h2 class="section-title">Boutique by design.<br>Senior by default.</h2>
+          <h2 class="section-title">Specialist by design.</h2>
           <p class="section-body">
-            Our team blends deep technical expertise and client service
-            experience, gained from years of delivery in leading advisory
-            firms.
+            Our team combines deep technical expertise with proven client
+            service delivery from leading advisory practices.
           </p>
         </div>
       </div>
@@ -1004,7 +947,11 @@
           <span class="label">What we do</span>
         </div>
         <div class="fade-in">
-          <h2 class="section-title">Building long-term revenue<br>protection and operational resilience.</h2>
+          <h2 class="section-title">Understand your adversaries.<br>Measure the real impact.<br>Deploy solutions that work.</h2>
+          <p class="section-body">
+            Three capabilities, deployed together or independently to
+            translate risk insights into clear actions.
+          </p>
         </div>
       </div>
       <div class="services-grid">
@@ -1018,11 +965,11 @@
         <div class="service-card fade-in">
           <div class="service-title">Measure</div>
           <div class="service-subtitle">What impacts you could suffer</div>
-          <p class="service-desc">We translate technical risk into financial terms. What would an incident cost in operations, revenue, and recovery? We give leadership something concrete to work with.</p>
+          <p class="service-desc">We translate technical risk into financial terms. What would an incident cost in operations, revenue, and recovery? We give leadership teams something concrete to work with.</p>
         </div>
 
         <div class="service-card fade-in">
-          <div class="service-title">Solve</div>
+          <div class="service-title">Deploy</div>
           <div class="service-subtitle">Solutions built around reality</div>
           <p class="service-desc">The right answer is one you can implement. We design solutions around your risk appetite and budget, not what looks good in a report.</p>
         </div>
@@ -1039,8 +986,7 @@
           <span class="label">Our team</span>
         </div>
         <div class="fade-in">
-          <h2 class="section-title">The people behind the advice.</h2>
-          <p class="section-body">Careers built across the major advisory firms. When you work with Ashcairn, you work with us — directly.</p>
+          <h2 class="section-title">Owner run and owner operated.</h2>
         </div>
       </div>
       <div class="team-grid">
@@ -1194,27 +1140,25 @@
           <div class="tombstone-client">London-based international private equity firm</div>
         </div>
       </div>
-      <p class="work-note fade-in">A non-exhaustive selection of engagements · Further detail available on request</p>
-
       <!-- Featured case study -->
       <div class="cs-label fade-in"><span class="label">Featured case study</span></div>
-      <p class="cs-title fade-in">Supporting a renewable infrastructure asset manager to uplift cybersecurity across thermal electricity generating sites</p>
+      <p class="cs-title fade-in">Designing a right-sized cybersecurity solution for thermal electricity generating sites at a price point that actually works.</p>
       <div class="cs-card fade-in">
         <div class="cs-grid">
           <div class="cs-block">
             <div class="cs-block-label">The situation</div>
-            <p>The client was early in their security journey with no in-house expertise. Unable to secure cyber insurance at a workable price, they faced real financial exposure. Previous vendors had produced solutions that were technically coherent but commercially undeliverable. Too costly and too compliance-heavy to actually implement.</p>
+            <p>A renewable infrastructure asset manager was early in their security journey with no in-house expertise. Unable to secure cyber insurance at an acceptable price, they faced real financial exposure. Engineering firms proposed solutions that were technically coherent but commercially unworkable, being too costly and too compliance-heavy to implement.</p>
           </div>
           <div class="cs-block">
             <div class="cs-block-label">How we worked</div>
-            <p>We went to the sites and worked directly with the people running them. Using a business risk-based methodology, we worked out what an incident would actually cost — then designed a right-sized security approach built around what the client could genuinely deliver. We stripped back anything that existed to look good rather than to work.</p>
+            <p>We went to the sites and worked directly with the people running them. Using a threat-informed business risk methodology, we established what an incident would cost the business, then designed a proportionate and scalable solution built around their risk and cost appetite. The result saved the client significant amount of money while delivering a step-change in their security posture.</p>
           </div>
           <div class="cs-block">
             <div class="cs-block-label">What we delivered</div>
             <div class="cs-deliverables">
               <div class="cs-d-item">Cyber maturity assessment and loss quantification model</div>
               <div class="cs-d-item">High-level architecture for a full cybersecurity solution</div>
-              <div class="cs-d-item">Revised minimum viable design, built around what the client could afford</div>
+              <div class="cs-d-item">Revised minimum viable design, built around realistic threat scenarios and what the client could genuinely afford</div>
               <div class="cs-d-item">Vendor selection support for required technical products</div>
               <div class="cs-d-item">Transformation delivery framework</div>
             </div>
@@ -1222,9 +1166,9 @@
           <div class="cs-outcomes">
             <div class="cs-block-label">What changed</div>
             <div class="cs-outcomes-list">
-              <div class="cs-outcome">Projected costs reduced from multiple millions of EUR over three years to commercially acceptable one-off and recurring values</div>
-              <div class="cs-outcome">Security responsibility moved from onsite engineers to specialist OT vendors, so the solution holds regardless of who leaves</div>
-              <div class="cs-outcome">Sites in a meaningfully stronger position to prevent or recover from an incident</div>
+              <div class="cs-outcome">Projected spend reduced by two-thirds from millions of euros over three years to commercially acceptable one-off and recurring costs</div>
+              <div class="cs-outcome">Security responsibility transferred from onsite engineers to specialist vendors, so the solution holds regardless of staff turnover</div>
+              <div class="cs-outcome">Sites in a stronger position to prevent, contain and recover from an incident</div>
             </div>
           </div>
         </div>
@@ -1239,14 +1183,14 @@
         <div class="fade-in">
           <span class="label">Get in touch</span>
           <h2 class="contact-headline">
-            If the problem<br>is complex,<br>
+            If the problem is complex,<br>
             <strong>we should talk.</strong>
           </h2>
           <div class="contact-links">
             <a href="mailto:info@ashcairn.com" class="contact-link">
               <span class="dot"></span>info@ashcairn.com
             </a>
-            <a href="https://linkedin.com/company/ashcairn" class="contact-link" target="_blank" rel="noopener">
+            <a href="https://linkedin.com/company/ashcairn" class="contact-link" target="_blank" rel="noopener noreferrer">
               <span class="dot"></span>linkedin.com/company/ashcairn
             </a>
           </div>
@@ -1254,9 +1198,9 @@
         <div class="fade-in">
           <p class="contact-right-label">Why Ashcairn</p>
           <p class="contact-statement">
-            We take on a small number of engagements each year. If you are
-            working through something that needs a clear head and a senior
-            one, reach out.
+            We work with a small number of senior leadership teams each
+            year on high-value, high-stakes challenges. If yours is one
+            of them, reach out.
           </p>
           <a href="mailto:info@ashcairn.com" class="btn-contact">
             Start a conversation →
